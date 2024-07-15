@@ -15,6 +15,10 @@ const onGenerateSubmit = (event) => {
         qrName = 'qr' + Date.now()
     }
 
+    if (qrName !== '') {
+        qrName = qrName.split(' ').join('-');
+    }
+
     if (url === '') {
         alert('Please enter a URL!');
         document.getElementById('url').focus();
