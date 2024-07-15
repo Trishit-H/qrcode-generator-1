@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <title>QuickQR - Qr Code Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+        integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="js/script.js" defer></script>
+    <style>
+        #spinner {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="bg-teal-700 p-4 mb-10">
+        <div class="max-w-5xl m-auto">
+            <div class="text-xl font-bold text-white">
+                Quick QR
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="flex flex-col-reverse align-center justify-center p-10 m-auto md:max-w-5xl md:flex-row">
+            <div class="w-full md:w-2/3 mr-24">
+                <h1 class="text-3xl text-gray-700 font-bold mb-5 md:text-4xl">
+                    QR Code Generator
+                </h1>
+                <p class="mb-4 text-gray-600">
+                    Welcome to Quick Qr, your go-to tool for creating custom QR codes for URLs! Simplify the sharing of
+                    web addresses by converting them into easy-to-scan QR codes. Just enter the URL below, and within
+                    seconds, you'll have a QR code ready to use. Perfect for marketing materials, business cards, or any
+                    situation where you want to provide quick access to a website. Start now and make sharing links
+                    effortless!
+                </p>
+                <form id="generate-form" class="mt-4">
+                    <input id="url" type="url" placeholder="Enter a URL"
+                        class="w-full border-2 border-gray-200 rounded p-3 text-gray-dark mr-2 focus:outline-gray-500 mb-5">
+
+                    <input id="qr-name" type="text" placeholder="Enter a name for your QR (optional)"
+                        class="w-full border-2 border-gray-200 rounded p-3 text-gray-dark mr-2 focus:outline-gray-500 mb-5">
+
+                    <select id="size"
+                        class="w-full border-2 border-gray-200 rounded p-3 text-gray-dark mr-2 focus:outline-none mb-5">
+                        <option value="100">100x100</option>
+                        <option value="200">200x200</option>
+                        <option value="300" selected>300x300</option>
+                        <option value="400">400x400</option>
+                        <option value="500">500x500</option>
+                        <option value="600">600x600</option>
+                        <option value="700">700x700</option>
+                    </select>
+
+                    <button class="bg-gray-600 rounded w-full text-white py-3 px-4 mt-5 hover:bg-black" type="submit">
+                        Generate QR Code
+                    </button>
+                </form>
+            </div>
+            <div class="w-full md:w-1/3 self-center">
+                <img src="images/qr-image.jpg" class="w-1/2 m-auto mb-10 md:w-full">
+            </div>
+        </div>
+
+        <!-- Generated QR Code -->
+        <div id="generated" class="max-w-5xl m-auto flex flex-col text-center align-center justify-center">
+            <!-- Spinner -->
+            <div id="spinner" class="m-0" role="status">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="block m-auto w-24">
+                    <circle fill="#2D46FF" stroke="#2D46FF" stroke-width="4" r="20" cx="80" cy="130">
+                        <animate attributeName="cy" calcMode="spline" dur="2s" values="130;270;130;"
+                            keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4s"></animate>
+                    </circle>
+                    <circle fill="#2D46FF" stroke="#2D46FF" stroke-width="4" r="20" cx="200" cy="130">
+                        <animate attributeName="cy" calcMode="spline" dur="2s" values="130;270;130;"
+                            keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2s"></animate>
+                    </circle>
+                    <circle fill="#2D46FF" stroke="#2D46FF" stroke-width="4" r="20" cx="320" cy="130">
+                        <animate attributeName="cy" calcMode="spline" dur="2s" values="130;270;130;"
+                            keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate>
+                    </circle>
+                </svg>
+            </div>
+
+            <!-- QR Code -->
+            <div id="qr-code" class="m-auto mb-5"></div>
+        </div>
+    </main>
+</body>
+
+</html>
